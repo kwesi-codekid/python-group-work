@@ -4,7 +4,7 @@ import customtkinter
 
 
 class SidebarFrame(customtkinter.CTkFrame):
-    def __init__(self, master, show_new_contact_frame, show_contacts_frame, user_data, navigate_logout):
+    def __init__(self, master, show_new_contact_frame, show_contacts_frame, navigate_logout, user_data):
         super().__init__(master)
         self.user_data = user_data
         # create title label

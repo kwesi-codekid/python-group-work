@@ -59,7 +59,7 @@ class Main:
         self.register_frame.pack_forget()
 
         self.sidebar = SidebarFrame(
-            self.root, self.show_new_contact_frame, self.show_contacts_frame, user_data)
+            self.root, self.show_new_contact_frame, self.show_contacts_frame, self.logout, user_data)
         self.sidebar.pack(fill="y", side="left")
 
         self.contacts_frame = ContactsFrame(
