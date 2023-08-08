@@ -59,9 +59,15 @@ class EditContactFrame(customtkinter.CTkFrame):
         email = self.emailEntry.get()
         phone = self.phoneEntry.get()
 
-        self.database.update_data(
-            'contacts', f'id = {self.contact_id}', f'email = , first_name, last_name, phone_number')
+        update_condition = f"id = {self.contact_id}"
+        new_values = (
+            f"email = '{email}', first_name = '{first_name}', last_name = '{last_name}', phone_number = '{phone}'"
+        )
+
+        self.database.update_data('contacts', update_condition, new_values)
         self.show_contacts_frame()
+
+
 
     def fetch_contact(self, contact_id):
         contact = self.database.fetch_single_data(
@@ -69,7 +75,17 @@ class EditContactFrame(customtkinter.CTkFrame):
         self.contact = {'id': contact[0], 'first_name': contact[1],
                         'last_name': contact[2], 'email': contact[3], 'phone': contact[4]}
         print(contact[1])
+        # clear input fields
+        self.firstNameEntry.delete(0, 'end')
+        self.lastNameEntry.delete(0, 'end')
+        self.emailEntry.delete(0, 'end')
+        self.phoneEntry.delete(0, 'end')
+
+        # append values to input fields 
         self.firstNameEntry.insert(0, contact[1])
+        self.lastNameEntry.insert(0, contact[2])
+        self.emailEntry.insert(0, contact[3])
+        self.phoneEntry.insert(0, contact[4])
 
     def set_contact_id(self, contact_id):
         self.contact_id = contact_id

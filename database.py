@@ -100,10 +100,16 @@ class Database:
         self.connection.commit()
 
     # update data
-    def update_data(self, table_name, condition, new_value):
-        self.cursor.execute(
-            f"UPDATE {table_name} SET {condition} WHERE {new_value}")
-        self.connection.commit()
+    def update_data(self, table_name, condition, new_values):
+        update_query = f"UPDATE {table_name} SET {new_values} WHERE {condition}"
+
+        try:
+            self.cursor.execute(update_query)
+            self.connection.commit()
+            print("Update successful")
+        except sqlite3.Error as e:
+            print("Error updating data:", e)
+            self.connection.rollback()
 
     # close connection
     def close_connection(self):

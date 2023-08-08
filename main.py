@@ -17,15 +17,15 @@ class Main:
         self.root.geometry("1000x600")
         self.root.title("Phonebook")
         self.root._set_appearance_mode("light")
-        customtkinter.set_default_color_theme("green")
+        customtkinter.set_default_color_theme("blue")
 
         # create sidebar frame
         self.sidebar = SidebarFrame(
-            self.root, self.show_new_contact_frame, self.show_contacts_frame)
+            self.root, self.show_new_contact_frame, self.show_contacts_frame, self.logout)
         # self.sidebar.pack(side="left", fill="y")
 
         self.register_frame = RegisterFrame(self.root, self.switch_to_login)
-        self.register_frame.pack(fill="both", expand=True)
+        # self.register_frame.pack(fill="both", expand=True)
 
         # frame instances
         self.login_frame = LoginFrame(
@@ -67,6 +67,13 @@ class Main:
     def switch_to_register(self):
         self.login_frame.pack_forget()
         self.register_frame.pack(fill="both", expand=True)
+
+    def logout(self):
+        self.contacts_frame.pack_forget()
+        self.edit_contact_frame.pack_forget()
+        self.new_contact_frame.pack_forget()
+        self.login_frame.pack(fill="both", expand=True)
+        self.sidebar.pack_forget()
 
 
 # run main class

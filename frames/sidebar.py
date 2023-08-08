@@ -4,7 +4,7 @@ import customtkinter
 
 
 class SidebarFrame(customtkinter.CTkFrame):
-    def __init__(self, master, show_new_contact_frame, show_contacts_frame):
+    def __init__(self, master, show_new_contact_frame, show_contacts_frame, navigate_logout):
         super().__init__(master)
 
         # create title label
@@ -22,7 +22,7 @@ class SidebarFrame(customtkinter.CTkFrame):
                 'Poppins', 18), command=show_new_contact_frame).pack(pady=10)
 
         # create exit button
-        self.exit_button = customtkinter.CTkButton(self, text="Logout", height=32, font=(
+        self.exit_button = customtkinter.CTkButton(self, text="Logout", height=32, command=navigate_logout, font=(
             'Poppins', 18),).pack(pady=10)
 
     # create functions for buttons
