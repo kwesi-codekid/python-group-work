@@ -26,7 +26,7 @@ class Main:
             self.root, self.show_contacts_frame, user_data=None)
 
         self.register_frame = RegisterFrame(self.root, self.switch_to_login)
-        # self.register_frame.pack(fill="both", expand=True)
+        self.register_frame.pack(fill="both", expand=True)
 
         # frame instances
         self.login_frame = LoginFrame(

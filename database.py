@@ -85,8 +85,8 @@ class Database:
             self.connection.commit()
 
     # fetch data
-    def fetch_data(self, table_name):
-        self.cursor.execute(f"SELECT * FROM {table_name}")
+    def fetch_data(self, table_name, condition):
+        self.cursor.execute(f"SELECT * FROM {table_name} where {condition}")
         data = self.cursor.fetchall()
         return data
 

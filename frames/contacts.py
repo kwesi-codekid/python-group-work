@@ -59,7 +59,8 @@ class ContactsFrame(customtkinter.CTkFrame):
             self.show_contacts_frame(self.user_data)
 
     def fetch_data(self):
-        contacts = self.database.fetch_data("contacts")
+        contacts = self.database.fetch_data(
+            "contacts", f"user_id = {self.user_data['id']}")
         self.contacts_list = contacts
 
     def switch_frame(self, contact_id):
