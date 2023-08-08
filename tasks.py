@@ -1,4 +1,0 @@
-import customtkinter
-
-class Tasks:
-    
