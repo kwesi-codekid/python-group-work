@@ -54,6 +54,6 @@ class LoginFrame(customtkinter.CTkFrame):
             # Verify a password
             if bcrypt.checkpw(password.encode('utf-8'), user_data["password"]):
                 print("Password matches!")
-                self.show_contacts_frame()
+                self.show_contacts_frame(user_data)
             else:
                 print("Invalid username or password.")

@@ -43,7 +43,8 @@ class Database:
                 email TEXT,
                 first_name TEXT NOT NULL,
                 last_name TEXT NOT NULL,
-                phone_number TEXT NOT NULL
+                phone_number TEXT NOT NULL,
+                user_id TEXT NOT NULL
             )
         """)
         self.connection.commit()
@@ -72,15 +73,15 @@ class Database:
                             (name, description, due_date, status))
         self.connection.commit()
 
-    def add_contact(self, first_name, last_name, email, phone):
+    def add_contact(self, first_name, last_name, email, phone, user_id):
         self.cursor.execute("SELECT * FROM contacts WHERE email = ?", (email,))
         userExist = self.cursor.fetchone()
 
         if userExist:
             print("Email already taken!")
         else:
-            self.cursor.execute("INSERT INTO contacts (email, first_name, last_name, phone_number) VALUES (?, ?, ?, ?)",
-                                (email, first_name, last_name, phone))
+            self.cursor.execute("INSERT INTO contacts (email, first_name, last_name, phone_number, user_id) VALUES (?, ?, ?, ?, ?)",
+                                (email, first_name, last_name, phone, user_id))
             self.connection.commit()
 
     # fetch data

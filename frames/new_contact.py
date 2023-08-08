@@ -6,10 +6,11 @@ from database import Database
 
 # add new task frame
 class NewContactFrame(customtkinter.CTkFrame):
-    def __init__(self, master, show_contacts_frame):
+    def __init__(self, master, show_contacts_frame, user_data):
         super().__init__(master)
         self.database = Database("phonebook.db")
         self.show_contacts_frame = show_contacts_frame
+        self.user_data = user_data
 
         # create title label
         self.title_label = customtkinter.CTkLabel(
@@ -54,6 +55,9 @@ class NewContactFrame(customtkinter.CTkFrame):
         last_name = self.lastNameEntry.get()
         email = self.emailEntry.get()
         phone = self.phoneEntry.get()
+        # user_id = self.user_data['id']
+        print(self.user_data)
 
-        self.database.add_contact(first_name, last_name, email, phone)
-        self.show_contacts_frame()
+        self.database.add_contact(
+            first_name, last_name, email, phone, self.user_data['id'])
+        self.show_contacts_frame(self.user_data)

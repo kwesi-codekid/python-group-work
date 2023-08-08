@@ -5,14 +5,16 @@ from database import Database
 
 
 class ContactsFrame(customtkinter.CTkFrame):
-    def __init__(self, master, show_contacts_frame, show_edit_contact_frame):
+    def __init__(self, master, show_contacts_frame, show_edit_contact_frame, user_data=None):
         super().__init__(master)
         self.database = Database("phonebook.db")
         self.show_contacts_frame = show_contacts_frame
         self.show_edit_contact_frame = show_edit_contact_frame
         self.contacts_list = []
+        self.user_data = user_data
         self.fetch_data()
 
+        print(user_data)
         # heading
         self.heading = customtkinter.CTkLabel(self, text="All Contacts", font=(
             'Sen', 36, 'bold'), fg_color="transparent")
@@ -54,7 +56,7 @@ class ContactsFrame(customtkinter.CTkFrame):
             self.database.delete_data('contacts', f"id={contact_id}")
             # Re-fetch the data after deletion to update the view
             self.fetch_data()
-            self.show_contacts_frame()
+            self.show_contacts_frame(self.user_data)
 
     def fetch_data(self):
         contacts = self.database.fetch_data("contacts")
